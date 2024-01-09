@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+/* body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  box-sizing: border-box;
+} */
+
+
+/* COLORS */
+
+:root {
+
+  --black: #252525;
+  --p-dark: #1b3b3b;
+  --p-mdark: #2E4F4F;
+  --p-medium: #0E8388;
+  --p-light: #CBE4DE;
+  --white: #FFFFFF;
+
+  --p-dark-transparent: #2c3333af;
+
+  --error: #be0625;
+  --success: #06be87;
+  --warning: #e6d00d;
+  --info: #0E8388;
+}
+
+
+
+::selection {
+  background-color: var(--p-medium);
+  color: black;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+p{
+  font-weight: 550;
+}
+
+.pageTitle {
+  width: 80%;
+  margin-top: 3rem;
+  align-self: left;
+}
+
+input,
+select {
+  height: 2.5em;
+  padding: 0em 1em;
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 0.25em;
+  font-weight: 500;
+}
+
+input:hover,
+select :hover {
+  outline: 2px solid rgb(194, 194, 194);
+}
+
+.inputField {
+  width: 100%;
+  /* padding: 1em; */
+  border-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  
+}
