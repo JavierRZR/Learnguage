@@ -1,11 +1,14 @@
 import { montserrat } from './ui/fonts';
 import { usePathname } from 'next/navigation';
 // Locales
-import es from '../../public/locale/es';
-import en from '../../public/locale/en';
+// import es from '../../public/locale/es';
+// import en from '../../public/locale/en';
+// const pathname = usePathname();
+// const { locale } = router;
+// const t = locale === 'es' ? es : en;
 
 import "./globals.css"
-import Navbar from './ui/components/navbar';
+import Navbar from './ui/components/Navbar';
 
 import { connectDB } from './lib/db-connect'
 // await connectDB()
@@ -15,9 +18,7 @@ import { connectDB } from './lib/db-connect'
 // }
 
 export default async function RootLayout({ children }) {
-  const pathname = usePathname();
-  const { locale } = router;
-  const t = locale === 'es' ? es : en;
+  
 
   
   return (
@@ -27,8 +28,7 @@ export default async function RootLayout({ children }) {
       ${montserrat.className}
       antialiased 
       bg-neutral-850
-      p-24
-      min-h-screen
+      w-full
       flex flex-col items-center justify-between`}>
         <Navbar />
         {children}
