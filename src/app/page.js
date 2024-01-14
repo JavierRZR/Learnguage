@@ -2,6 +2,7 @@
 
 import FiltersBox from "./ui/components/FiltersBox"
 import IndexBox from "./ui/components/IndexBox"
+import RoomList from "./ui/components/RoomList"
 
 export default async function Home() {
 
@@ -14,6 +15,7 @@ export default async function Home() {
       mt-24 `}>
       <IndexBox />
       <FiltersBox />
+      <RoomList />
     </main>
   )
 }
