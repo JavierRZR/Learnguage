@@ -4,6 +4,10 @@ const server = require('http').Server(app);
 const cors = require('cors');
 const { v4: uuidV4 } = require('uuid');
 
+const appUrl = process.env.APP_URL || 'http://localhost:3000';
+
+
+
 const io = require('socket.io')(server, {
     cors: {
         origin: '*',
@@ -15,7 +19,7 @@ app.use(cors());
 
 
 app.get('/:room', (req, res) => {
-    res.redirect(`http://localhost:3000/${uuidV4()}`);
+    res.redirect(`${appUrl}/${uuidV4()}`);
 })
 
 

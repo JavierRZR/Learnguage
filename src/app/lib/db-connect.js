@@ -1,8 +1,9 @@
 import { Client } from 'pg';
+import { env } from '../../../next.config';
 
 
 const db = new Client({
-    connectionString: 'postgres://fl0user:QCWg1BvA3zZy@ep-black-fog-22548778.eu-central-1.aws.neon.fl0.io:5432/learnguague-db?sslmode=require',
+    connectionString: process.env.DATABASE_URL,
     ssl: {
         rejectUnauthorized: false, // Only for development, consider more secure options for production
     },

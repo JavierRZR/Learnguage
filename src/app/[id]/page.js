@@ -5,13 +5,21 @@ import { io } from 'socket.io-client';
 import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
 import Input from '../ui/components/Input';
 
-const socket = io('http://localhost:4000');
+// const socket = io('http://localhost:4000');
+const socket = io();
 
+
+// const myPeer = new Peer(undefined, {
+//     host: '/',
+//     port: '3001'
+// });
 
 const myPeer = new Peer(undefined, {
-    host: '/',
-    port: '3001'
+    host: '/', // This will automatically use the same host as the page
+    port: '443', // This is the default HTTPS port
+    path: '/myapp' // This is the path to your PeerJS server
 });
+
 
 myPeer.on('open', id => {
     socket.emit('join-room', 123, id);
