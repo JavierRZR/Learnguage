@@ -1,6 +1,6 @@
 {
   "https://esm.sh/peerjs@1.5.2?bundle-deps": { "integrity": "sha512-ZE38knAYvzxV4ZS7/NdWTYgqYoY69psJnaYdGZe2fNDbuiHEnaoIbQGDKqhhsiVVVb2ZiXh5Cf7zIS7m7etBmA==", "contentType": "application/javascript; charset=utf-8" },
-  "https://esm.sh/v135/peerjs@1.5.2/esnext/peerjs.bundle.mjs": { "integrity": "sha512-sVg11drPubh1vSylhlHPipCzC8XkWGzE4X2vx3v565uq4nppifei2QZkpMitfWWvs4xNNgSMK4CYuy+aC8m+tA==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v135/peerjs@1.5.2/esnext/peerjs.bundle.mjs": { "integrity": "sha512-e70VhThctEY9YSaC5FsnCk9kCqRN17XOUOBC07ucyhbDk/JSUN3lmRF8ZGxMUxBV08LTj41eUo428G5Y4SF6sA==", "contentType": "application/javascript; charset=utf-8" },
   "https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js": { "integrity": "sha512-o/HHmG8jeysxAxgj7HH5ZZnXOwWYS7D9oGVJH+TdRIpEYj01/m9Dm26vmcOtfhou2QbzPXFdnewbEp6v9I0U0g==", "contentType": "application/javascript; charset=utf-8" },
   "version": 1
 }

@@ -18,17 +18,10 @@
   }
 }
 
-/* body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-  box-sizing: border-box;
-} */
-
 
 /* COLORS */
 
+/* Barra de navegación */
 #header-nav {
   animation: blur linear both;
   animation-timeline: scroll();
@@ -45,7 +38,7 @@
   }
 }
 
-
+/* Grid de las salas */
 #grid-salas {
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
@@ -53,3 +46,25 @@
   gap: 24px;
   justify-content: center;
 }
+
+#grid-roomCameras {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(500px, 1fr));
+  /* display: flex;
+  flex-wrap: wrap; */
+  padding: 24px;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+#grid-roomCameras>div {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+}
+

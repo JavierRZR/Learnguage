@@ -46,7 +46,7 @@ export default function FiltersBox() {
 
     return (
         <section className={`
-        lg:w-[1200px] 
+        w-full max-w-screen-xl
         flex flex-col justify-around items-center gap-x-24 gap-y-5 `}>
             <h1 className="self-start md:mx-0 lg:mx-0 text-2xl font-medium">Explora las salas!</h1>
             <form className={`bg-neutral-900 rounded-xl

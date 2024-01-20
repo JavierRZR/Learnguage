@@ -1,10 +1,12 @@
 import { languagesConstant } from "@/app/lib/langConstants";
+import Link from "next/link";
 
 export default async function RoomCard({ data }) {
     const { id, room_id, lang, creator, description, maxUsers, users } = data;
 
     return (
-        <a href={'#'} className={`m-auto w-[300px] h-[200px] p-5 bg-neutral-900 rounded-md text-neutral-300/90 
+        <Link href={`http://localhost:4000/[id]`} as={`http://localhost:4000/${id}`}
+            className={`m-auto w-[300px] h-[200px] p-5 bg-neutral-900 rounded-md text-neutral-300/90 
         border-[1px]  border-neutral-300/10
         transition-all ease-in-out duration-300 hover:border-neutral-300/50 hover:border-2 hover:scale-105 hover:brightness-125
         grid grid-cols-5 grid-rows-5`}>
@@ -20,6 +22,6 @@ export default async function RoomCard({ data }) {
                 {users.length}/{maxUsers}
             </div>
             <p className="col-span-5 row-span-2 row-start-4 font-extralight text-xs">{description}</p>
-        </a>
+        </Link>
     )
 }
