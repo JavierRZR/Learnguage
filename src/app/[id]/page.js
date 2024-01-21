@@ -1,4 +1,4 @@
-"use client"
+"use server"
 // import { useEffect, useState } from 'react';
 
 // import { io } from 'socket.io-client';
@@ -23,7 +23,7 @@ import RoomDetailClient from "../ui/components/RoomDetailClient"
 // });
 
 
-export default function RoomDetail() {
+export default async function RoomDetail() {
 
     // myPeer.on('open', id => {
     //     socket.emit('join-room', 123, id);
@@ -108,8 +108,8 @@ export default function RoomDetail() {
 
     return (
         <>
-        <h1>Que</h1>
-            {/* <RoomDetailClient /> */}
+            <h1>Que</h1>
+            <RoomDetailClient />
         </>
         // <main className='w-full h-full flex flex-row flex-wrap justify-center align-middle'>
         //     <section id='room-info' className='w-[50%] h-[80vh] py-24 px-24 flex flex-row'>
