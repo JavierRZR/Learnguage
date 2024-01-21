@@ -2,18 +2,18 @@
 import { useEffect, useState } from 'react';
 
 import { io } from 'socket.io-client';
-import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
+// import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
 import Input from './Input';
 
 const socket = io('http://localhost:4000');
 // const socket = io();
 
 
-const myPeer = new Peer(undefined, {
-    host: '/',
-    port: '9000',
-    path: '/myapp'
-});
+// const myPeer = new Peer(undefined, {
+//     host: '/',
+//     port: '9000',
+//     path: '/myapp'
+// });
 
 // const myPeer = new Peer(undefined, {
 //     host: '/', // This will automatically use the same host as the page
@@ -22,12 +22,12 @@ const myPeer = new Peer(undefined, {
 // });
 
 export default function RoomDetailClient() {
-    myPeer.on('open', id => {
-        socket.emit('join-room', 123, id);
-    })
+    // myPeer.on('open', id => {
+    //     socket.emit('join-room', 123, id);
+    // })
 
 
-    const peers = {};
+    // const peers = {};
     const myVideo = document.createElement('video');
     myVideo.muted = true;
 
@@ -38,14 +38,14 @@ export default function RoomDetailClient() {
         }).then(stream => {
             addVideoStream(myVideo, stream);
 
-            myPeer.on('call', call => {
-                call.answer(stream);
+            // myPeer.on('call', call => {
+            //     call.answer(stream);
 
-                const userVideo = document.createElement('video');
-                call.on('stream', userVideoStream => {
-                    addVideoStream(userVideo, userVideoStream);
-                })
-            })
+            //     const userVideo = document.createElement('video');
+            //     call.on('stream', userVideoStream => {
+            //         addVideoStream(userVideo, userVideoStream);
+            //     })
+            // })
 
             socket.on('user-connected', userId => {
                 connectToNewUser(userId, stream);
@@ -57,7 +57,7 @@ export default function RoomDetailClient() {
 
     socket.on('user-disconnected', userId => {
         console.log("disconection");
-        if (peers[userId]) peers[userId].close();
+        // if (peers[userId]) peers[userId].close();
     })
 
     socket.on('broadcast-newMessage', msg => {
@@ -70,16 +70,16 @@ export default function RoomDetailClient() {
 
 
     function connectToNewUser(userId, stream) {
-        const call = myPeer.call(userId, stream);
-        const video = document.createElement('video');
-        call.on('stream', userVideoStream => {
-            addVideoStream(video, userVideoStream);
-        });
-        call.on('close', () => {
-            video.remove();
-        });
+        // const call = myPeer.call(userId, stream);
+        // const video = document.createElement('video');
+        // call.on('stream', userVideoStream => {
+        //     addVideoStream(video, userVideoStream);
+        // });
+        // call.on('close', () => {
+        //     video.remove();
+        // });
 
-        peers[userId] = call;
+        // peers[userId] = call;
     }
 
     function addVideoStream(video, stream) {
