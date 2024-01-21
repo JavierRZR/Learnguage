@@ -10,7 +10,9 @@ import Input from './Input';
 export default function RoomDetailClient() {
 
     // const socket = io('http://localhost:4000');
-    const socket = io(`${process.env.APP_RUL}:${process.env.PORT}`);
+    console.log(process.env.APP_URL);
+    console.log(process.env.PORT);
+    const socket = io(`https://learnguage.vercel.app:4000`);
 
 
     const myPeer = new Peer();
