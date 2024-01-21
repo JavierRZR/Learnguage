@@ -9,8 +9,8 @@ import Input from './Input';
 
 export default function RoomDetailClient() {
 
-    const socket = io('http://localhost:4000');
-    // const socket = io();
+    // const socket = io('http://localhost:4000');
+    const socket = io(`${process.env.APP_RUL}:${process.env.PORT}`);
 
 
     const myPeer = new Peer();
