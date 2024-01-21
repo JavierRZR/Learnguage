@@ -1,9 +1,9 @@
-"use client"
-import { useEffect, useState } from 'react';
+"use server"
+// import { useEffect, useState } from 'react';
 
-import { io } from 'socket.io-client';
-import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
-import Input from '../ui/components/Input';
+// import { io } from 'socket.io-client';
+// import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
+// import Input from '../ui/components/Input';
 
 // const socket = io('http://localhost:4000');
 // const socket = io();
@@ -22,7 +22,7 @@ import Input from '../ui/components/Input';
 // });
 
 
-export default function RoomDetail() {
+export default async function RoomDetail() {
 
     // myPeer.on('open', id => {
     //     socket.emit('join-room', 123, id);
