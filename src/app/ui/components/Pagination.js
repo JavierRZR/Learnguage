@@ -4,7 +4,7 @@ import { useState } from "react"
 
 export default function Pagination({ totalQuantity, quantityPerPage }) {
 
-  if (totalQuantity <= quantityPerPage || totalQuantity == 0) return (<></>)
+  // if (totalQuantity <= quantityPerPage || totalQuantity == 0) return (<></>)
 
   const [selectedPage, setSelectedPage] = useState(1);
   const tabs = Math.ceil(totalQuantity / quantityPerPage);
