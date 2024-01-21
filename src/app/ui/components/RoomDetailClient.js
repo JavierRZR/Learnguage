@@ -2,26 +2,30 @@
 import { useEffect, useState } from 'react';
 
 import { io } from 'socket.io-client';
-// import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
+import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
 import Input from './Input';
 
-const socket = io('http://localhost:4000');
-// const socket = io();
 
-
-// const myPeer = new Peer(undefined, {
-//     host: '/',
-//     port: '9000',
-//     path: '/myapp'
-// });
-
-// const myPeer = new Peer(undefined, {
-//     host: '/', // This will automatically use the same host as the page
-//     port: '443', // This is the default HTTPS port
-//     path: '/myapp' // This is the path to your PeerJS server
-// });
 
 export default function RoomDetailClient() {
+
+    const socket = io('http://localhost:4000');
+    // const socket = io();
+
+
+    // const myPeer = new Peer(undefined, {
+    //     host: '/',
+    //     port: '9000',
+    //     path: '/myapp'
+    // });
+
+    const myPeer = new Peer(undefined, {
+        host: '/', // This will automatically use the same host as the page
+        port: '443', // This is the default HTTPS port
+        path: '/myapp' // This is the path to your PeerJS server
+    });
+
+
     // myPeer.on('open', id => {
     //     socket.emit('join-room', 123, id);
     // })
