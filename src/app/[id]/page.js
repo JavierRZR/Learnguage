@@ -11,7 +11,8 @@ const socket = io();
 
 // const myPeer = new Peer(undefined, {
 //     host: '/',
-//     port: '3001'
+//     port: '9000',
+//     path: '/myapp'
 // });
 
 const myPeer = new Peer(undefined, {
