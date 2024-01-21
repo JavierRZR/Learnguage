@@ -106,33 +106,36 @@ export default function RoomDetail() {
     // let message = null;
 
     return (
-        <main className='w-full h-full flex flex-row flex-wrap justify-center align-middle'>
-            <section id='room-info' className='w-[50%] h-[80vh] py-24 px-24 flex flex-row'>
-                <div className='h-full w-[35%] py-5 bg-neutral-900 rounded-s-xl border-e-2 border-neutral-300/20'>
-                    info
-                </div>
-                <div className='h-full w-full max-w-full p-5 bg-neutral-900 rounded-e-xl relative overflow-y-scroll'>
-                    <div id='chat-box' className=''>
+        <>
+            <h1>Hola</h1>
+        </>
+        // <main className='w-full h-full flex flex-row flex-wrap justify-center align-middle'>
+        //     <section id='room-info' className='w-[50%] h-[80vh] py-24 px-24 flex flex-row'>
+        //         <div className='h-full w-[35%] py-5 bg-neutral-900 rounded-s-xl border-e-2 border-neutral-300/20'>
+        //             info
+        //         </div>
+        //         <div className='h-full w-full max-w-full p-5 bg-neutral-900 rounded-e-xl relative overflow-y-scroll'>
+        //             <div id='chat-box' className=''>
 
-                    </div>
-                    <div className='absolute top-[90%] flex flex-row gap-4'>
-                        <Input handleChange={(msg) => { message = msg }} />
-                        <button onClick={() => { emitirMensaje(message) }}>Enviar</button>
-                    </div>
-                </div>
-            </section>
-            <section id={'grid-roomCameras'} className='w-[50%] h-[80vh] max-w-[80vh]'>
+        //             </div>
+        //             <div className='absolute top-[90%] flex flex-row gap-4'>
+        //                 <Input handleChange={(msg) => { message = msg }} />
+        //                 <button onClick={() => { emitirMensaje(message) }}>Enviar</button>
+        //             </div>
+        //         </div>
+        //     </section>
+        //     <section id={'grid-roomCameras'} className='w-[50%] h-[80vh] max-w-[80vh]'>
 
-            </section>
-            <section id='panel-control' className='w-[600px] p-5 rounded-xl bg-neutral-900 flex flex-row gap-5 justify-center text-center'>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-            </section>
-        </main>
+        //     </section>
+        //     <section id='panel-control' className='w-[600px] p-5 rounded-xl bg-neutral-900 flex flex-row gap-5 justify-center text-center'>
+        //         <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
+        //         <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
+        //         <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
+        //         <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
+        //         <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
+        //         <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
+        //         <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
+        //     </section>
+        // </main>
     )
 }
