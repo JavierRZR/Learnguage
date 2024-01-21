@@ -5,7 +5,7 @@ export default async function RoomCard({ data }) {
     const { id, room_id, lang, creator, description, maxUsers, users } = data;
 
     return (
-        <Link href={`/[id]`} as={`/${id}`}
+        <Link href={`https://learnguage-socketio-server.vercel.app/[id]`} as={`https://learnguage-socketio-server.vercel.app/${id}`}
             className={`m-auto w-[300px] h-[200px] p-5 bg-neutral-900 rounded-md text-neutral-300/90 
         border-[1px]  border-neutral-300/10
         transition-all ease-in-out duration-300 hover:border-neutral-300/50 hover:border-2 hover:scale-105 hover:brightness-125
