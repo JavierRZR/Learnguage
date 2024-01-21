@@ -1,15 +1,10 @@
 {
-  "https://esm.sh/peerjs@1.5.2?bundle-deps": {
-    "integrity": "sha512-ZE38knAYvzxV4ZS7/NdWTYgqYoY69psJnaYdGZe2fNDbuiHEnaoIbQGDKqhhsiVVVb2ZiXh5Cf7zIS7m7etBmA==",
-    "contentType": "application/javascript; charset=utf-8"
-  },
-  "https://esm.sh/v135/peerjs@1.5.2/esnext/peerjs.bundle.mjs": {
-    "integrity": "sha512-8Eil45EhPLOsuhpsPWAcvXImG4YLlUJ6guhvS5Su3rC856jl7OheWQXlKWl5yQsl+K98phGeRF+90oG5IX531A==",
-    "contentType": "application/javascript; charset=utf-8"
-  },
-  "https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js": {
-    "integrity": "sha512-o/HHmG8jeysxAxgj7HH5ZZnXOwWYS7D9oGVJH+TdRIpEYj01/m9Dm26vmcOtfhou2QbzPXFdnewbEp6v9I0U0g==",
-    "contentType": "application/javascript; charset=utf-8"
-  },
+  "https://esm.sh/peerjs@1.3.2?bundle-deps": { "integrity": "sha512-LFEoRtvhWB1dNczXK7e/ytTq9OgJP/99uVflXxO6/HvCKAypFu+P4OV0NZRWvxU89aFEjUT5Gkdi0ck9uY83HA==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/peerjs@1.4.7?bundle-deps": { "integrity": "sha512-jRUjbjQ7aa/kI2NUmV2YK6lZCiNGCcJn1iNK3vj+RV/KO2jQFNJIc36epFhycdojPh9Kjxoeu0KVWpRmzGSgQw==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/peerjs@1.5.2?bundle-deps": { "integrity": "sha512-ZE38knAYvzxV4ZS7/NdWTYgqYoY69psJnaYdGZe2fNDbuiHEnaoIbQGDKqhhsiVVVb2ZiXh5Cf7zIS7m7etBmA==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v135/peerjs@1.3.2/esnext/peerjs.bundle.mjs": { "integrity": "sha512-vuV5WSjFrbpwgeT+9jKBVYEHINWw7g7fCPvwkEUCs3FcGgkkg28AK6VIjMFQZfcoIwk0ek8RtqNtqjAv/SRRIg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v135/peerjs@1.4.7/esnext/peerjs.bundle.mjs": { "integrity": "sha512-C6em73VKFu5ydvmgii6/u+AbBzG8k8LdVLWe11CiiTc8N2g5mxPz6OnNC36Y0LNmD+fnP/+YDLfLxWngB3Vvwg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/v135/peerjs@1.5.2/esnext/peerjs.bundle.mjs": { "integrity": "sha512-ZqbpWLf6Ih6bFRGt7/p8fQqczmCpf4wo+YD6nyTa5IjwIMrVdBqxOapyYl+L3BCWFQh4pm9+I3EgtdYqApvOJQ==", "contentType": "application/javascript; charset=utf-8" },
+  "https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js": { "integrity": "sha512-o/HHmG8jeysxAxgj7HH5ZZnXOwWYS7D9oGVJH+TdRIpEYj01/m9Dm26vmcOtfhou2QbzPXFdnewbEp6v9I0U0g==", "contentType": "application/javascript; charset=utf-8" },
   "version": 1
 }

@@ -9,6 +9,7 @@
     "dev:peerjs": "peerjs --port 9000 --key peerjs --path /myapp"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "flag-icons": "^7.0.3",
     "next": "14.0.3",
     "peerjs": "^1.5.2",
