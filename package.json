@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:peerjs\"",
     "dev:frontend": "next dev",
-    "dev:backend": "node server.js",
+    "dev:backend": "node src/app/server/index.js",
     "dev:peerjs": "peerjs --port 9000 --key peerjs --path /myapp"
   },
   "dependencies": {
