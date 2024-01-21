@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import { io } from 'socket.io-client';
-import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
+import { Peer } from "https://esm.sh/peerjs@1.4.7?bundle-deps"
 import Input from './Input';
 
 
