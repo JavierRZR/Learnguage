@@ -34,25 +34,25 @@ export default function RoomDetail() {
     myVideo.muted = true;
 
     useEffect(() => {
-        navigator && navigator.mediaDevices.getUserMedia({
-            video: true,
-            audio: true
-        }).then(stream => {
-            addVideoStream(myVideo, stream);
+        // navigator && navigator.mediaDevices.getUserMedia({
+        //     video: true,
+        //     audio: true
+        // }).then(stream => {
+        //     addVideoStream(myVideo, stream);
 
-            myPeer.on('call', call => {
-                call.answer(stream);
+        //     myPeer.on('call', call => {
+        //         call.answer(stream);
 
-                const userVideo = document.createElement('video');
-                call.on('stream', userVideoStream => {
-                    addVideoStream(userVideo, userVideoStream);
-                })
-            })
+        //         const userVideo = document.createElement('video');
+        //         call.on('stream', userVideoStream => {
+        //             addVideoStream(userVideo, userVideoStream);
+        //         })
+        //     })
 
-            socket.on('user-connected', userId => {
-                connectToNewUser(userId, stream);
-            })
-        })
+        //     socket.on('user-connected', userId => {
+        //         connectToNewUser(userId, stream);
+        //     })
+        // })
     }, [])
 
 
