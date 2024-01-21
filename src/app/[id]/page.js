@@ -108,7 +108,8 @@ export default function RoomDetail() {
 
     return (
         <>
-            <RoomDetailClient />
+        <h1>Que</h1>
+            {/* <RoomDetailClient /> */}
         </>
         // <main className='w-full h-full flex flex-row flex-wrap justify-center align-middle'>
         //     <section id='room-info' className='w-[50%] h-[80vh] py-24 px-24 flex flex-row'>
