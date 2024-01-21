@@ -19,11 +19,11 @@ export default function RoomDetailClient() {
     //     path: '/myapp'
     // });
 
-    const myPeer = new Peer(undefined, {
-        host: '/', // This will automatically use the same host as the page
-        port: '443', // This is the default HTTPS port
-        path: '/myapp' // This is the path to your PeerJS server
-    });
+    // const myPeer = new Peer(undefined, {
+    //     host: '/', // This will automatically use the same host as the page
+    //     port: '443', // This is the default HTTPS port
+    //     path: '/myapp' // This is the path to your PeerJS server
+    // });
 
 
     // myPeer.on('open', id => {
