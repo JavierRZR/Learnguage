@@ -1,6 +1,15 @@
 {
-  "https://esm.sh/peerjs@1.5.2?bundle-deps": { "integrity": "sha512-ZE38knAYvzxV4ZS7/NdWTYgqYoY69psJnaYdGZe2fNDbuiHEnaoIbQGDKqhhsiVVVb2ZiXh5Cf7zIS7m7etBmA==", "contentType": "application/javascript; charset=utf-8" },
-  "https://esm.sh/v135/peerjs@1.5.2/esnext/peerjs.bundle.mjs": { "integrity": "sha512-h9aKZ1fgaYzg/eM8kkO6dOF1wiqcbymzi6ZhrMapv42Gf1KDyko5FIc3c9PkG1ObCw06MhuAOSv/qabhG1P2Aw==", "contentType": "application/javascript; charset=utf-8" },
-  "https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js": { "integrity": "sha512-o/HHmG8jeysxAxgj7HH5ZZnXOwWYS7D9oGVJH+TdRIpEYj01/m9Dm26vmcOtfhou2QbzPXFdnewbEp6v9I0U0g==", "contentType": "application/javascript; charset=utf-8" },
+  "https://esm.sh/peerjs@1.5.2?bundle-deps": {
+    "integrity": "sha512-ZE38knAYvzxV4ZS7/NdWTYgqYoY69psJnaYdGZe2fNDbuiHEnaoIbQGDKqhhsiVVVb2ZiXh5Cf7zIS7m7etBmA==",
+    "contentType": "application/javascript; charset=utf-8"
+  },
+  "https://esm.sh/v135/peerjs@1.5.2/esnext/peerjs.bundle.mjs": {
+    "integrity": "sha512-8Eil45EhPLOsuhpsPWAcvXImG4YLlUJ6guhvS5Su3rC856jl7OheWQXlKWl5yQsl+K98phGeRF+90oG5IX531A==",
+    "contentType": "application/javascript; charset=utf-8"
+  },
+  "https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js": {
+    "integrity": "sha512-o/HHmG8jeysxAxgj7HH5ZZnXOwWYS7D9oGVJH+TdRIpEYj01/m9Dm26vmcOtfhou2QbzPXFdnewbEp6v9I0U0g==",
+    "contentType": "application/javascript; charset=utf-8"
+  },
   "version": 1
 }
