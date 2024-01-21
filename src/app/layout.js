@@ -11,6 +11,7 @@ import "./globals.css"
 import Navbar from './ui/components/navbar';
 
 import { connectDB } from './lib/db-connect'
+import { Suspense } from 'react';
 // await connectDB()
 export const metadata = {
   title: 'Learnguage - Practica multitud de lenguas de la mejor manera, hablandolas!',
@@ -26,8 +27,8 @@ export default async function RootLayout({ children }) {
     <html lang="en">
 
       <body className={`${montserrat.className} antialiased bg-neutral-850 w-full h-full flex flex-col items-center justify-start`}>
-        <Navbar />
-        {children}
+        <Suspense fallback={<h1>Loading...</h1>}><Navbar /></Suspense>
+        <Suspense fallback={<h1>Loading...</h1>}>{children}</Suspense>
         {/* <Footer /> */}
       </body>
     </html>
