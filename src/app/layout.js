@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 // const t = locale === 'es' ? es : en;
 
 import "./globals.css"
-import Navbar from './ui/components/Navbar';
+import Navbar from './ui/components/navbar';
 
 import { connectDB } from './lib/db-connect'
 // await connectDB()
