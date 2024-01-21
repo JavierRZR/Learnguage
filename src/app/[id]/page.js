@@ -6,7 +6,7 @@ import { Peer } from "https://esm.sh/peerjs@1.5.2?bundle-deps"
 import Input from '../ui/components/Input';
 
 // const socket = io('http://localhost:4000');
-const socket = io();
+// const socket = io();
 
 
 // const myPeer = new Peer(undefined, {
@@ -33,27 +33,27 @@ export default function RoomDetail() {
     // const myVideo = document.createElement('video');
     // myVideo.muted = true;
 
-    useEffect(() => {
-        // navigator && navigator.mediaDevices.getUserMedia({
-        //     video: true,
-        //     audio: true
-        // }).then(stream => {
-        //     addVideoStream(myVideo, stream);
+    // useEffect(() => {
+    // navigator && navigator.mediaDevices.getUserMedia({
+    //     video: true,
+    //     audio: true
+    // }).then(stream => {
+    //     addVideoStream(myVideo, stream);
 
-        //     myPeer.on('call', call => {
-        //         call.answer(stream);
+    //     myPeer.on('call', call => {
+    //         call.answer(stream);
 
-        //         const userVideo = document.createElement('video');
-        //         call.on('stream', userVideoStream => {
-        //             addVideoStream(userVideo, userVideoStream);
-        //         })
-        //     })
+    //         const userVideo = document.createElement('video');
+    //         call.on('stream', userVideoStream => {
+    //             addVideoStream(userVideo, userVideoStream);
+    //         })
+    //     })
 
-        //     socket.on('user-connected', userId => {
-        //         connectToNewUser(userId, stream);
-        //     })
-        // })
-    }, [])
+    //     socket.on('user-connected', userId => {
+    //         connectToNewUser(userId, stream);
+    //     })
+    // })
+    // }, [])
 
 
 
@@ -98,12 +98,12 @@ export default function RoomDetail() {
 
     // }
 
-    function emitirMensaje(message) {
-        if (!message) return
+    // function emitirMensaje(message) {
+    //     if (!message) return
 
-        socket.emit('emit-message', message, 123);
-    }
-    let message = null;
+    //     socket.emit('emit-message', message, 123);
+    // }
+    // let message = null;
 
     return (
         <main className='w-full h-full flex flex-row flex-wrap justify-center align-middle'>
