@@ -13,11 +13,7 @@ export default function RoomDetailClient() {
     // const socket = io();
 
 
-    // const myPeer = new Peer(undefined, {
-    //     host: '/',
-    //     port: '9000',
-    //     path: '/myapp'
-    // });
+    const myPeer = new Peer();
 
     // const myPeer = new Peer(undefined, {
     //     host: '/', // This will automatically use the same host as the page
@@ -26,12 +22,12 @@ export default function RoomDetailClient() {
     // });
 
 
-    // myPeer.on('open', id => {
-    //     socket.emit('join-room', 123, id);
-    // })
+    myPeer.on('open', id => {
+        socket.emit('join-room', 123, id);
+    })
 
 
-    // const peers = {};
+    const peers = {};
     const myVideo = document.createElement('video');
     myVideo.muted = true;
 
@@ -42,14 +38,14 @@ export default function RoomDetailClient() {
         }).then(stream => {
             addVideoStream(myVideo, stream);
 
-            // myPeer.on('call', call => {
-            //     call.answer(stream);
+            myPeer.on('call', call => {
+                call.answer(stream);
 
-            //     const userVideo = document.createElement('video');
-            //     call.on('stream', userVideoStream => {
-            //         addVideoStream(userVideo, userVideoStream);
-            //     })
-            // })
+                const userVideo = document.createElement('video');
+                call.on('stream', userVideoStream => {
+                    addVideoStream(userVideo, userVideoStream);
+                })
+            })
 
             socket.on('user-connected', userId => {
                 connectToNewUser(userId, stream);
@@ -74,16 +70,16 @@ export default function RoomDetailClient() {
 
 
     function connectToNewUser(userId, stream) {
-        // const call = myPeer.call(userId, stream);
-        // const video = document.createElement('video');
-        // call.on('stream', userVideoStream => {
-        //     addVideoStream(video, userVideoStream);
-        // });
-        // call.on('close', () => {
-        //     video.remove();
-        // });
+        const call = myPeer.call(userId, stream);
+        const video = document.createElement('video');
+        call.on('stream', userVideoStream => {
+            addVideoStream(video, userVideoStream);
+        });
+        call.on('close', () => {
+            video.remove();
+        });
 
-        // peers[userId] = call;
+        peers[userId] = call;
     }
 
     function addVideoStream(video, stream) {
@@ -93,7 +89,6 @@ export default function RoomDetailClient() {
         })
         const videoGrid = document.getElementById('grid-roomCameras');
         let numCols = Math.round(Math.sqrt(videoGrid.children.length / 2));
-        // console.log(videoGrid.children)
         videoGrid.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
         video.className = "rounded-2xl"
         videoGrid.append(video);
