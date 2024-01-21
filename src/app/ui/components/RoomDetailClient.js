@@ -11,6 +11,7 @@ const myPeer = new Peer();
 
 export default function RoomDetailClient() {
 
+    console.log("Reset reset reset --------------------------------------------");
     // const socket = io('http://localhost:4000');
 
 
