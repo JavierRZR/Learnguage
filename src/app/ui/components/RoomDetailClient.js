@@ -6,16 +6,14 @@ import { Peer } from "https://esm.sh/peerjs@1.4.7?bundle-deps"
 import Input from './Input';
 
 
+const socket = io(`https://learnguage-socketio-server.vercel.app/`);
+const myPeer = new Peer();
 
 export default function RoomDetailClient() {
 
     // const socket = io('http://localhost:4000');
-    console.log(process.env.APP_URL);
-    console.log(process.env.PORT);
-    const socket = io(`https://learnguage-socketio-server.vercel.app/`);
 
 
-    const myPeer = new Peer();
 
     // const myPeer = new Peer(undefined, {
     //     host: '/', // This will automatically use the same host as the page
