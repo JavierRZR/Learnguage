@@ -5,7 +5,7 @@ import IndexBox from "./ui/components/IndexBox"
 import RoomList from "./ui/components/RoomList"
 
 export default async function Home() {
-
+  console.log("Estoy en /page");
   return (
     <main
       className={`
