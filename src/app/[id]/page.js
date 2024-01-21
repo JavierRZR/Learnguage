@@ -22,110 +22,87 @@ const myPeer = new Peer(undefined, {
 });
 
 
-myPeer.on('open', id => {
-    socket.emit('join-room', 123, id);
-})
-
-
-const peers = {};
-const myVideo = document.createElement('video');
-myVideo.muted = true;
-
-navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: true
-}).then(stream => {
-    addVideoStream(myVideo, stream);
-
-    myPeer.on('call', call => {
-        call.answer(stream);
-
-        const userVideo = document.createElement('video');
-        call.on('stream', userVideoStream => {
-            addVideoStream(userVideo, userVideoStream);
-        })
-    })
-
-    socket.on('user-connected', userId => {
-        connectToNewUser(userId, stream);
-    })
-})
-
-socket.on('user-disconnected', userId => {
-    console.log("disconection");
-    if (peers[userId]) peers[userId].close();
-})
-
-socket.on('broadcast-newMessage', msg => {
-    const messageContainer = document.getElementById('chat-box');
-    const newMessage = document.createElement('p')
-    newMessage.innerText = msg;
-
-    messageContainer.append(newMessage);
-})
-
-
-function connectToNewUser(userId, stream) {
-    const call = myPeer.call(userId, stream);
-    const video = document.createElement('video');
-    call.on('stream', userVideoStream => {
-        addVideoStream(video, userVideoStream);
-    });
-    call.on('close', () => {
-        video.remove();
-    });
-
-    peers[userId] = call;
-}
-
-function addVideoStream(video, stream) {
-    video.srcObject = stream;
-    video.addEventListener('loadedmetadata', () => {
-        video.play();
-    })
-    const videoGrid = document.getElementById('grid-roomCameras');
-    let numCols = Math.round(Math.sqrt(videoGrid.children.length / 2));
-    // console.log(videoGrid.children)
-    videoGrid.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
-    video.className = "rounded-2xl"
-    videoGrid.append(video);
-
-}
-
-function emitirMensaje(message) {
-    if (!message) return
-
-    socket.emit('emit-message', message, 123);
-}
-
 export default function RoomDetail() {
 
-    const array = [];
+    myPeer.on('open', id => {
+        socket.emit('join-room', 123, id);
+    })
 
-    function addNewCam() {
-        if (array.length >= 12) return
+
+    const peers = {};
+    const myVideo = document.createElement('video');
+    myVideo.muted = true;
+
+    useEffect(() => {
+        navigator && navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: true
+        }).then(stream => {
+            addVideoStream(myVideo, stream);
+
+            myPeer.on('call', call => {
+                call.answer(stream);
+
+                const userVideo = document.createElement('video');
+                call.on('stream', userVideoStream => {
+                    addVideoStream(userVideo, userVideoStream);
+                })
+            })
+
+            socket.on('user-connected', userId => {
+                connectToNewUser(userId, stream);
+            })
+        })
+    }, [])
+
+
+
+    socket.on('user-disconnected', userId => {
+        console.log("disconection");
+        if (peers[userId]) peers[userId].close();
+    })
+
+    socket.on('broadcast-newMessage', msg => {
+        const messageContainer = document.getElementById('chat-box');
+        const newMessage = document.createElement('p')
+        newMessage.innerText = msg;
+
+        messageContainer.append(newMessage);
+    })
+
+
+    function connectToNewUser(userId, stream) {
+        const call = myPeer.call(userId, stream);
+        const video = document.createElement('video');
+        call.on('stream', userVideoStream => {
+            addVideoStream(video, userVideoStream);
+        });
+        call.on('close', () => {
+            video.remove();
+        });
+
+        peers[userId] = call;
+    }
+
+    function addVideoStream(video, stream) {
+        video.srcObject = stream;
+        video.addEventListener('loadedmetadata', () => {
+            video.play();
+        })
         const videoGrid = document.getElementById('grid-roomCameras');
-        let numCols = Math.ceil(Math.sqrt(array.length));
-
-        const div2 = document.createElement('div');
-        const div = document.createElement('video');
-        div.className = 'w-[200px] h-[150px] bg-neutral-900 rounded-xl';
-        div.textContent = array.length;
-        array.push(div)
-        div2.append(div);
-        videoGrid.append(div2)
-
+        let numCols = Math.round(Math.sqrt(videoGrid.children.length / 2));
+        // console.log(videoGrid.children)
         videoGrid.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
+        video.className = "rounded-2xl"
+        videoGrid.append(video);
 
     }
 
-    // setInterval(() => {
-    //     addNewCam();
-    // }, 1000)
+    function emitirMensaje(message) {
+        if (!message) return
 
-
-
-    // const [message, setMessage] = useState(null)
+        socket.emit('emit-message', message, 123);
+    }
     let message = null;
 
     return (
