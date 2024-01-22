@@ -7,12 +7,12 @@ import Input from './Input';
 
 
 const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`);
-// const myPeer = new Peer();
-const myPeer = new Peer(undefined, {
-    host: '/', // This will automatically use the same host as the page
-    port: '443', // This is the default HTTPS port
-    path: '/myapp' // This is the path to your PeerJS server
-});
+const myPeer = new Peer();
+// const myPeer = new Peer(undefined, {
+//     host: '/', // This will automatically use the same host as the page
+//     port: '443', // This is the default HTTPS port
+//     path: '/myapp' // This is the path to your PeerJS server
+// });
 
 export default function RoomDetailClient() {
 
