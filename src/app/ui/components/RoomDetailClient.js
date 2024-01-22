@@ -6,7 +6,7 @@ import { Peer } from "https://esm.sh/peerjs@1.4.7?bundle-deps"
 import Input from './Input';
 
 
-const socket = io(`https://learnguage-socketio-server.vercel.app/`);
+const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`);
 const myPeer = new Peer();
 
 export default function RoomDetailClient() {
