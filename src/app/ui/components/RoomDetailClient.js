@@ -7,7 +7,15 @@ import Input from './Input';
 
 
 const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`);
-const myPeer = new Peer();
+// const myPeer = new Peer();
+const myPeer = new Peer({
+    config: {
+        iceServers: [
+            { urls: 'stun:freeturn.net:5349' },
+            { urls: 'turns:freeturn.tel:5349', username: 'free', credential: 'free' }
+        ]
+    }
+});
 // const myPeer = new Peer(undefined, {
 //     host: '/', // This will automatically use the same host as the page
 //     port: '443', // This is the default HTTPS port
