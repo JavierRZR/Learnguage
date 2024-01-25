@@ -8,18 +8,33 @@ import Input from './Input';
 
 const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`);
 
-// Calling the REST API TO fetch the TURN Server Credentials
-
-const response =
-    await fetch("https://learnguage.metered.live/api/v1/turn/credentials?apiKey=" + process.env.TURN_API_KEY);
-
-// Saving the response in the iceServers array
-const iceServers = await response.json();
-
-
 const myPeer = new Peer({
     config: {
-        iceServers: iceServers
+        iceServers: [
+            {
+                urls: "stun:stun.relay.metered.ca:80",
+            },
+            {
+                urls: "turn:standard.relay.metered.ca:80",
+                username: "c3190f0d456daa1bea81035e",
+                credential: "1CiNoMK0EYZGqJfT",
+            },
+            {
+                urls: "turn:standard.relay.metered.ca:80?transport=tcp",
+                username: "c3190f0d456daa1bea81035e",
+                credential: "1CiNoMK0EYZGqJfT",
+            },
+            {
+                urls: "turn:standard.relay.metered.ca:443",
+                username: "c3190f0d456daa1bea81035e",
+                credential: "1CiNoMK0EYZGqJfT",
+            },
+            {
+                urls: "turns:standard.relay.metered.ca:443?transport=tcp",
+                username: "c3190f0d456daa1bea81035e",
+                credential: "1CiNoMK0EYZGqJfT",
+            },
+        ],
     }
 });
 
