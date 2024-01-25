@@ -11,9 +11,9 @@ const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`);
 const myPeer = new Peer({
     config: {
         iceServers: [
-            { urls: ' turn:freeturn.net:3478', username: 'free', credential: 'free' },
-            { urls: 'stun:freeturn.net:3478' }
-            // { urls: 'stun:stun.l.google.com:19302' }
+            { urls: 'stun:stun.l.google.com:19302' },
+            // { urls: ' turn:freeturn.net:3478', username: 'free', credential: 'free' },
+            // { urls: 'stun:freeturn.net:3478' },
         ]
     }
 });
