@@ -11,9 +11,11 @@ const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`);
 const myPeer = new Peer({
     config: {
         iceServers: [
-            { urls: 'stun:stun.l.google.com:19302' },
-            // { urls: ' turn:freeturn.net:3478', username: 'free', credential: 'free' },
-            // { urls: 'stun:freeturn.net:3478' },
+            { "urls": "stun:stun.relay.metered.ca:80" },
+            { "urls": "turn:standard.relay.metered.ca:80", "username": "c3190f0d456daa1bea81035e", "credential": "1CiNoMK0EYZGqJfT" },
+            { "urls": "turn:standard.relay.metered.ca:80?transport=tcp", "username": "c3190f0d456daa1bea81035e", "credential": "1CiNoMK0EYZGqJfT" },
+            { "urls": "turn:standard.relay.metered.ca:443", "username": "c3190f0d456daa1bea81035e", "credential": "1CiNoMK0EYZGqJfT" },
+            { "urls": "turns:standard.relay.metered.ca:443?transport=tcp", "username": "c3190f0d456daa1bea81035e", "credential": "1CiNoMK0EYZGqJfT" }
         ]
     }
 });
