@@ -135,6 +135,7 @@ export default function RoomDetailClient() {
         socket.emit('emit-message', message, roomId);
     }
 
+    //Emitimos el mensaje de aviso para el resto de salas y nos desconectamos.
     function disconnectMe() {
         socket.emit('disconnectMe', { userId, roomId });
         socket.disconnect();
