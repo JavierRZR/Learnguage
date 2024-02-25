@@ -1,12 +1,13 @@
 "use client"
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 import { io } from 'socket.io-client';
 import { Peer } from "https://esm.sh/peerjs@1.4.7?bundle-deps"
 import Input from './Input';
 
-
 const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`);
+// const socket = io(`http://localhost:4000/`);
 
 const myPeer = new Peer({
     config: {
@@ -40,10 +41,13 @@ const myPeer = new Peer({
 
 export default function RoomDetailClient() {
 
-    myPeer.on('open', id => {
-        socket.emit('join-room', 123, id);
-    })
+    const roomId = usePathname().slice(1);
+    let userId = null;
 
+    myPeer.on('open', id => {
+        userId = id;
+        socket.emit('join-room', roomId, id);
+    })
 
     const peers = {};
     const myVideo = document.createElement('video');
@@ -68,14 +72,26 @@ export default function RoomDetailClient() {
             socket.on('user-connected', userId => {
                 connectToNewUser(userId, stream);
             })
+
+            //Carga evento de salida, para notificar a la sala de nuestro borrado.
+            const handleBeforeUnload = (event) => {
+                // Perform actions before the component unloads
+                event.preventDefault();
+                disconnectMe();
+                event.returnValue = '';
+            };
+            window.addEventListener('beforeunload', handleBeforeUnload);
+            return () => {
+                window.removeEventListener('beforeunload', handleBeforeUnload);
+            };
         })
+
     }, [])
 
 
 
     socket.on('user-disconnected', userId => {
-        console.log("disconection");
-        // if (peers[userId]) peers[userId].close();
+        if (peers[userId]) peers[userId].close();
     })
 
     socket.on('broadcast-newMessage', msg => {
@@ -116,8 +132,14 @@ export default function RoomDetailClient() {
     function emitirMensaje(message) {
         if (!message) return
 
-        socket.emit('emit-message', message, 123);
+        socket.emit('emit-message', message, roomId);
     }
+
+    function disconnectMe() {
+        socket.emit('disconnectMe', { userId, roomId });
+        socket.disconnect();
+    }
+
     let message = null;
     return (
         <main className='w-full h-full flex flex-row flex-wrap justify-center align-middle'>
@@ -145,7 +167,8 @@ export default function RoomDetailClient() {
                 <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
                 <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
                 <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
+                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'
+                    onClick={() => { disconnectMe() }}>X</div>
             </section>
         </main>
     )
