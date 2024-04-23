@@ -80,7 +80,8 @@ const fetchSomeRooms = async () => {
 const getRooms = async (init, end) => {
     let salas = [];
 
-    salas = end <= SALAS.length ? SALAS.splice(init, end) : SALAS.splice(init, SALAS.length);
+    // salas = end <= SALAS.length ? SALAS.splice(init, end) : SALAS.splice(init, SALAS.length);
+    salas = SALAS;
 
     return {
         result: 'OK',

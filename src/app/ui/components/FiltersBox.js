@@ -59,7 +59,7 @@ export default function FiltersBox() {
                         changeFilters(Number(filter));
                     }} />
 
-                {filterField && <Input id="filterField" name={filterField} type="text"
+                {filterField && <Input className='bg-stone-300 text-neutral-800' id="filterField" name={filterField} type="text"
                     handleChange={(filter) => changeQuery(filter)} />}
             </form>
         </section>

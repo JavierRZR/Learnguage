@@ -1,10 +1,13 @@
 "use client"
-import { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { IconMic, IconMutedMic, IconExit, IconCamera, IconMutedCamera } from '@/app/lib/iconsConstants';
 
 import { io } from 'socket.io-client';
 import { Peer } from "https://esm.sh/peerjs@1.4.7?bundle-deps"
 import Input from './Input';
+
+import { stopMicrophone, stopCamera } from '../../utils/mediaDevicesFunctions';
 
 const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`);
 // const socket = io(`http://localhost:4000/`);
@@ -41,17 +44,31 @@ const myPeer = new Peer({
 
 export default function RoomDetailClient() {
 
+    const router = useRouter();
+
     const roomId = usePathname().slice(1);
-    let userId = null;
+    const [userId, setUserId] = useState(null);
+    const userIdRef = useRef(null)
+
+    const [chat, setChat] = useState([]);
+    const [message, setMessage] = useState("");
+
+    const [cameraMuted, setCameraMuted] = useState(false);
+    const [micMuted, setMicMuted] = useState(false);
 
     myPeer.on('open', id => {
-        userId = id;
+        setUserId(id);
+        userIdRef.current = id;
         socket.emit('join-room', roomId, id);
     })
 
     const peers = {};
+    const [usuarios, setUsuarios] = useState([])
     const myVideo = document.createElement('video');
     myVideo.muted = true;
+    const mediaStream = useRef(null);
+
+
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({
@@ -59,6 +76,7 @@ export default function RoomDetailClient() {
             audio: true
         }).then(stream => {
             addVideoStream(myVideo, stream);
+            mediaStream.current = stream;
 
             myPeer.on('call', call => {
                 call.answer(stream);
@@ -73,6 +91,16 @@ export default function RoomDetailClient() {
                 connectToNewUser(userId, stream);
             })
 
+            socket.on('user-disconnected', userId => {
+                if (peers[userId]) peers[userId].close();
+            })
+
+            socket.on('broadcast-newMessage', content => {
+                const messagerId = content.userId;
+                const msg = content.msg
+                setChat(prevChat => [...prevChat, { incoming: messagerId == userIdRef.current, msg: msg }])
+            })
+
             //Carga evento de salida, para notificar a la sala de nuestro borrado.
             const handleBeforeUnload = (event) => {
                 // Perform actions before the component unloads
@@ -83,24 +111,11 @@ export default function RoomDetailClient() {
             window.addEventListener('beforeunload', handleBeforeUnload);
             return () => {
                 window.removeEventListener('beforeunload', handleBeforeUnload);
+                socket.disconnect();
             };
         })
 
     }, [])
-
-
-
-    socket.on('user-disconnected', userId => {
-        if (peers[userId]) peers[userId].close();
-    })
-
-    socket.on('broadcast-newMessage', msg => {
-        const messageContainer = document.getElementById('chat-box');
-        const newMessage = document.createElement('p')
-        newMessage.innerText = msg;
-
-        messageContainer.append(newMessage);
-    })
 
 
     function connectToNewUser(userId, stream) {
@@ -114,6 +129,7 @@ export default function RoomDetailClient() {
         });
 
         peers[userId] = call;
+        setUsuarios(prev => [...prev, userId])
     }
 
     function addVideoStream(video, stream) {
@@ -132,28 +148,54 @@ export default function RoomDetailClient() {
     function emitirMensaje(message) {
         if (!message) return
 
-        socket.emit('emit-message', message, roomId);
+        socket.emit('emit-message', message, roomId, userId);
+        setMessage("");
     }
 
     //Emitimos el mensaje de aviso para el resto de salas y nos desconectamos.
     function disconnectMe() {
         socket.emit('disconnectMe', { userId, roomId });
         socket.disconnect();
+
+        stopCamera(mediaStream.current);
+        stopMicrophone(mediaStream.current);
+
+        router.push("http://localhost:3000")
     }
 
-    let message = null;
     return (
         <main className='w-full h-full flex flex-row flex-wrap justify-center align-middle'>
             <section id='room-info' className='w-[50%] h-[80vh] py-24 px-24 flex flex-row'>
-                <div className='h-full w-[35%] py-5 bg-neutral-900 rounded-s-xl border-e-2 border-neutral-300/20'>
-                    info
+                <div className='h-full w-[35%] py-5 px-2 flex flex-col overflow-y-auto overflow-x-hidden break-words bg-neutral-900 rounded-s-xl border-e-2 border-neutral-300/20'>
+                    {/* {usuarios && usuarios.map(peer => {
+                        return <div>
+                            {peer}
+                        </div>
+                    })} */}
+                    <div className='p-3 text-xs text-neutral-300 rounded-xl hover:bg-neutral-800'>9672dd5c-61f4-4e6f-8962-46695c9dcd7b</div>
+                    <div className='p-3 text-xs text-neutral-300 rounded-xl hover:bg-neutral-800'>9672dd5c-61f4-4e6f-8962-46695c9dcd7b</div>
+                    <div className='p-3 text-xs text-neutral-300 rounded-xl hover:bg-neutral-800'>9672dd5c-61f4-4e6f-8962-46695c9dcd7b</div>
+                    <div className='p-3 text-xs text-neutral-300 rounded-xl hover:bg-neutral-800'>9672dd5c-61f4-4e6f-8962-46695c9dcd7b</div>
+                    <div className='p-3 text-xs text-neutral-300 rounded-xl hover:bg-neutral-800'>9672dd5c-61f4-4e6f-8962-46695c9dcd7b</div>
+                    <div className='p-3 text-xs text-neutral-300 rounded-xl hover:bg-neutral-800'>9672dd5c-61f4-4e6f-8962-46695c9dcd7b</div>
+                    <div className='p-3 text-xs text-neutral-300 rounded-xl hover:bg-neutral-800'>9672dd5c-61f4-4e6f-8962-46695c9dcd7b</div>
                 </div>
-                <div className='h-full w-full max-w-full p-5 bg-neutral-900 rounded-e-xl relative overflow-y-scroll'>
-                    <div id='chat-box' className=''>
-
+                <div className='flex flex-col h-full w-[75%] max-w-full bg-neutral-900 rounded-e-xl  '>
+                    <div id='chat-box' className='h-full p-3 flex gap-3 flex-col overflow-y-auto overflow-x-hidden break-words'>
+                        {chat && chat.map((msg, index) => {
+                            return (
+                                <div key={index} className={`
+                                      max-w-[85%]  rounded-md py-3 px-5 bg-neutral-800 text-white text-xs 
+                                    ${msg.incoming ?
+                                        'self-end bg-pink-700/90 rounded-tr-none' :
+                                        'self-start rounded-tl-none'}
+                                        `}>
+                                    {msg.msg}
+                                </div>)
+                        })}
                     </div>
-                    <div className='absolute top-[90%] flex flex-row gap-4'>
-                        <Input handleChange={(msg) => { message = msg }} />
+                    <div className='flex items-center p-3 gap-5'>
+                        <Input className={'bg-stone-300 text-neutral-800'} handleChange={(msg) => { setMessage(msg) }} value={message} />
                         <button onClick={() => { emitirMensaje(message) }}>Enviar</button>
                     </div>
                 </div>
@@ -161,16 +203,31 @@ export default function RoomDetailClient() {
             <section id={'grid-roomCameras'} className='w-[50%] h-[80vh] max-w-[80vh]'>
 
             </section>
-            <section id='panel-control' className='w-[600px] p-5 rounded-xl bg-neutral-900 flex flex-row gap-5 justify-center text-center'>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'></div>
-                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full'
-                    onClick={() => { disconnectMe() }}>X</div>
+            <section id='panel-control' className='w-[600px] p-5 rounded-xl bg-neutral-900 flex flex-row gap-5 justify-center'>
+                <div className={`w-[50px] h-[50px] rounded-full 
+                                flex justify-center items-center
+                                ${!cameraMuted ? 'bg-neutral-100' : 'bg-neutral-950'} 
+                                hover:bg-neutral-700/70`}
+                    onClick={() => { stopCamera(mediaStream.current); setCameraMuted(prev => !prev) }}>
+                    {!cameraMuted ?
+                        <IconCamera color={!cameraMuted ? '#000000' : '#ffffff'} /> :
+                        <IconMutedCamera color={!cameraMuted ? '#000000' : '#ffffff'} />}
+
+                </div>
+                <div className={`w-[50px] h-[50px] rounded-full
+                                flex justify-center items-center
+                                ${!micMuted ? 'bg-neutral-100' : 'bg-neutral-950'}  
+                                hover:bg-neutral-700/70`}
+                    onClick={() => { stopMicrophone(mediaStream.current); setMicMuted(prev => !prev) }}>
+                    {!micMuted ?
+                        <IconMic color={!micMuted ? '#000000' : '#ffffff'} /> :
+                        <IconMutedMic color={!micMuted ? '#000000' : '#ffffff'} />}
+                </div>
+                <div className='w-[50px] h-[50px] bg-neutral-950 rounded-full flex justify-center items-center bg-red-700/70 hover:bg-red-700'
+                    onClick={() => { disconnectMe() }}>{
+                        <IconExit />
+                    }</div>
             </section>
-        </main>
+        </main >
     )
 }

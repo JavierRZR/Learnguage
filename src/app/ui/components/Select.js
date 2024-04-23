@@ -17,7 +17,7 @@ export default function Select({ id, name, options, handleChange }) {
                 }}
                 className="p-2 rounded-md bg-stone-300 text-neutral-800 outline
                  hover:outline-neutral-300/80 
-                 focus:outline-emerald-300/50 focus:outline-2
+                 focus:outline-pink-700/50 focus:outline-2
                  transition-all">
                 <option>Selecciona un filtro</option>
                 {options && options.map(({ id, name }, index) => {

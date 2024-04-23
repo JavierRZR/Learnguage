@@ -1,6 +1,6 @@
 
 const BUTTON_CLASS = {
-    primary: "bg-emerald-300/20 border-neutral-300/20 hover:border-neutral-300/80 hover:bg-emerald-300/30 ",
+    primary: "bg-pink-700/20 border-neutral-300/20 hover:border-neutral-300/80 hover:bg-pink-700/30 ",
     secondary: "border-neutral-300/20 hover:border-neutral-300/80"
 }
 

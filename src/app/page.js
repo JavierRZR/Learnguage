@@ -8,7 +8,7 @@ export default async function Home() {
   return (
     <main
       className={`
-      w-full px-5 gap-24 mt-24 selection:bg-emerald-300/20 
+      w-full px-5 gap-24 mt-24 selection:bg-pink-700/20 
       flex  flex-col items-center justify-between `}>
       <IndexBox />
       <FiltersBox />

@@ -22,7 +22,7 @@ export default function IndexBox() {
         `}>
 
             <form className="md:w-[300px] lg:w-[300px]">
-                <Input id="userName" name={"Nombre"} type="text" handleChange={(name) => getUsername(name)}>
+                <Input className='bg-stone-300 text-neutral-800' id="userName" name={"Nombre"} type="text" placeholder="#MPA Mamutardo" handleChange={(name) => getUsername(name)}>
                     <p className="text-stone-300/70 text-xs">
                         Introduce tu nombre para que te reconozcan, únete a salas creadas por otras personas o crea la tuya propia!
                     </p>

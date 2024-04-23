@@ -1,7 +1,7 @@
 "use client"
 
 
-export default function Input({ id, name, type, handleChange, children }) {
+export default function Input({ id, name, type, value, handleChange, children, className, placeholder }) {
 
 
     return (
@@ -10,12 +10,12 @@ export default function Input({ id, name, type, handleChange, children }) {
                 className="text-stone-300 text-sm">
                 {name}
             </label>
-            <input id={id} type={type} placeholder="#MPA Mamutardo"
-                className="p-2 rounded-md bg-stone-300 text-neutral-800 
+            <input id={id} type={type} placeholder={placeholder} value={value}
+                className={`p-2 rounded-md  
                 outline outline-neutral-300
                  hover:outline-neutral-300/80 
-                 focus:outline-emerald-300/50 focus:outline-2
-                 transition-all"
+                 focus:outline-pink-700/50 focus:outline-2
+                 transition-all ${className}`}
                 onChange={(e) => handleChange(e.target.value)} />
             {children}
         </div>
