@@ -49,7 +49,7 @@ export default function FiltersBox() {
         w-full max-w-screen-xl
         flex flex-col justify-around items-center gap-x-24 gap-y-5 `}>
             <h1 className="self-start md:mx-0 lg:mx-0 text-2xl font-medium">Explora las salas!</h1>
-            <form className={`bg-neutral-900 rounded-xl
+            {/* <form className={`bg-neutral-900 rounded-xl
             w-full md:w-auto lg:w-auto px-10 py-10 
             flex flex-col md:flex-row lg:flex-row gap-x-24 gap-y-10 `}>
 
@@ -61,7 +61,7 @@ export default function FiltersBox() {
 
                 {filterField && <Input className='bg-stone-300 text-neutral-800' id="filterField" name={filterField} type="text"
                     handleChange={(filter) => changeQuery(filter)} />}
-            </form>
+            </form> */}
         </section>
     )
 }

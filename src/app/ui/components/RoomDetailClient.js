@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { IconMic, IconMutedMic, IconExit, IconCamera, IconMutedCamera } from '@/app/lib/iconsConstants';
+import { IconMic, IconMutedMic, IconExit, IconCamera, IconMutedCamera, IconSend } from '@/app/lib/iconsConstants';
 
 import { io } from 'socket.io-client';
 import { Peer } from "https://esm.sh/peerjs@1.4.7?bundle-deps"
@@ -138,7 +138,7 @@ export default function RoomDetailClient() {
             video.play();
         })
         const videoGrid = document.getElementById('grid-roomCameras');
-        let numCols = Math.round(Math.sqrt(videoGrid.children.length / 2));
+        let numCols = Math.round(Math.sqrt((videoGrid.children.length + 1) / 2));
         videoGrid.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
         video.className = "rounded-2xl"
         videoGrid.append(video);
@@ -160,11 +160,12 @@ export default function RoomDetailClient() {
         stopCamera(mediaStream.current);
         stopMicrophone(mediaStream.current);
 
-        router.push("http://localhost:3000")
+        router.push("https://learnguage.vercel.app/")
     }
 
     return (
         <main className='w-full h-full flex flex-row flex-wrap justify-center align-middle'>
+            {/* INFO & CHAT */}
             <section id='room-info' className='w-[50%] h-[80vh] py-24 px-24 flex flex-row'>
                 <div className='h-full w-[35%] py-5 px-2 flex flex-col overflow-y-auto overflow-x-hidden break-words bg-neutral-900 rounded-s-xl border-e-2 border-neutral-300/20'>
                     {/* {usuarios && usuarios.map(peer => {
@@ -194,15 +195,30 @@ export default function RoomDetailClient() {
                                 </div>)
                         })}
                     </div>
-                    <div className='flex items-center p-3 gap-5'>
-                        <Input className={'bg-stone-300 text-neutral-800'} handleChange={(msg) => { setMessage(msg) }} value={message} />
-                        <button onClick={() => { emitirMensaje(message) }}>Enviar</button>
+                    <div className='flex items-center p-3 gap-x-5 '>
+                        <Input className={'bg-stone-300 text-neutral-800'}
+                            value={message}
+                            handleChange={(msg) => { setMessage(msg) }}
+                            onKeyDown={(event, msg) => {
+                                if (event.key == "Enter" || event.keyCode == 13) {
+                                    emitirMensaje(msg)
+                                }
+                            }} />
+                        <button className='w-[50px] h-[50px] mt-2
+                            rounded-full 
+                            flex justify-center items-center 
+                            bg-pink-700 hover:bg-pink-600'
+                            onClick={() => { emitirMensaje(message) }}>
+                            {<IconSend />}
+                        </button>
                     </div>
                 </div>
             </section>
+            {/* CAMARAS */}
             <section id={'grid-roomCameras'} className='w-[50%] h-[80vh] max-w-[80vh]'>
 
             </section>
+            {/* ICONOS */}
             <section id='panel-control' className='w-[600px] p-5 rounded-xl bg-neutral-900 flex flex-row gap-5 justify-center'>
                 <div className={`w-[50px] h-[50px] rounded-full 
                                 flex justify-center items-center

@@ -1,7 +1,7 @@
 "use client"
 
 
-export default function Input({ id, name, type, value, handleChange, children, className, placeholder }) {
+export default function Input({ id, name, type, value, handleChange, children, className, placeholder, onKeyDown }) {
 
 
     return (
@@ -16,7 +16,8 @@ export default function Input({ id, name, type, value, handleChange, children, c
                  hover:outline-neutral-300/80 
                  focus:outline-pink-700/50 focus:outline-2
                  transition-all ${className}`}
-                onChange={(e) => handleChange(e.target.value)} />
+                onChange={(e) => handleChange(e.target.value)}
+                onKeyDown={(e) => onKeyDown ? onKeyDown(e, e.target.value) : ""} />
             {children}
         </div>
     )
