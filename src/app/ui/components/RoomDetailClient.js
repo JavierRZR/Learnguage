@@ -17,7 +17,9 @@ import Input from "./Input";
 import { stopMicrophone, stopCamera } from "../../utils/mediaDevicesFunctions";
 
 // const socket = io(`https://learnguage-server-dev-estf.1.ie-1.fl0.io`); FL0m stopped service
-const socket = io(`https://learnguage-server-javierrzr-21350d5d.koyeb.app/`);
+// const socket = io(`https://learnguage-server-javierrzr-21350d5d.koyeb.app/`);
+const socket = io(`https://learnguage-server.onrender.com`);
+
 // const socket = io(`http://localhost:4000/`);
 
 const myPeer = new Peer({
